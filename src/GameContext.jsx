@@ -9,9 +9,16 @@ export function GameProvider({ children }) {
   const [field, setField] = useState([false, false, false, true, false]);
   const [score, setScore] = useState(0);
   //TODO
-  const startGame = () => {};
-  const restartGame = () => {};
-  const moveMole = () => {};
+  const startGame = () => {
+    setIsPlaying(true);
+  };
+  const restartGame = () => {
+    setIsPlaying(false);
+    setScore(0);
+  };
+  const moveMole = () => {
+    setScore(score + 1);
+  };
   const value = { isPlaying, startGame, score, restartGame, field, moveMole };
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 }
