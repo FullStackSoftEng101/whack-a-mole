@@ -1,3 +1,5 @@
 export default function App() {
-  return <></>;
+  const { isPlaying } = useGame();
+  if (isPlaying) return <Game />;
+  return <Welcome />;
 }
