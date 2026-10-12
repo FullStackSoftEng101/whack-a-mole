@@ -1,3 +1,7 @@
+import { useGame } from "./GameContext";
+import Game from "./Game";
+import Welcome from "./Welcome";
+
 export default function App() {
   const { isPlaying } = useGame();
   if (isPlaying) return <Game />;

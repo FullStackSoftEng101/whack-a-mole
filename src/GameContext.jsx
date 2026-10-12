@@ -1,15 +1,19 @@
-const { createContext, useContext, useState } = require("react");
+import { useState } from "react";
+import { useContext } from "react";
+import { createContext } from "react";
 
-const GameContext = createContext;
+const GameContext = createContext();
 
-export function GameProvider(children) {
-  const [isPlaying, setisPlaying] = useState(false);
+export function GameProvider({ children }) {
+  const [isPlaying, setIsPlaying] = useState(true);
   const [field, setField] = useState([false, false, false, true, false]);
-  const [scode, setScore] = useState(0);
+  const [score, setScore] = useState(0);
   //TODO
   const startGame = () => {};
-  const value = { isPlaying, startGame };
-  return <GameContext.Provder value={value}>{children}</GameContext.Provder>;
+  const restartGame = () => {};
+  const moveMole = () => {};
+  const value = { isPlaying, startGame, score, restartGame, field, moveMole };
+  return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 }
 
 export function useGame() {

@@ -1,3 +1,5 @@
+import { useGame } from "./GameContext";
+
 export default function Scoreboard() {
   const { score, restartGame } = useGame();
   return (
