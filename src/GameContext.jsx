@@ -4,9 +4,20 @@ import { createContext } from "react";
 
 const GameContext = createContext();
 
+function makeField() {
+  const field = [];
+  for (let i = 0; i < 9; i++) {
+    field.push(false);
+  }
+  const mole = Math.floor(Math.random() * field.length);
+  field[mole] = true;
+  return field;
+}
+
 export function GameProvider({ children }) {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [field, setField] = useState([false, false, false, true, false]);
+  const [field, setField] = useState(makeField());
+  //   const [field, setField] = useState([false, false, false, true, false]);
   const [score, setScore] = useState(0);
   //TODO
   const startGame = () => {
@@ -18,6 +29,7 @@ export function GameProvider({ children }) {
   };
   const moveMole = () => {
     setScore(score + 1);
+    setField(makeField());
   };
   const value = { isPlaying, startGame, score, restartGame, field, moveMole };
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
